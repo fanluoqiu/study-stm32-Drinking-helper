@@ -20,6 +20,8 @@
 #include "delay.h"
 
 
+
+
 uint16_t  datacapt[PERIPHNUMB];
 
 
@@ -28,11 +30,13 @@ int main(void)
 {
 	delay_init();
 
+
 	Buzzer_conf();
 	OLEDintset();	
 	init_adc();
 	bootPOST();
-	
+	delay_ms(2000);
+	Buzzer_playmusic();
 	while (1)
 	{
 		print_p(42,20,(uint32_t)&ADC1->DR);
