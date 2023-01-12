@@ -5,8 +5,8 @@ SCL:	PB8
 SDA:	PB9
  */
 
-#include"oledprint.h"
-
+#include "oledprint.h"
+#include "delay.h"
 //开机界面
 //x,y：起点坐标
 //sizex,sizey：图片长宽
@@ -51,14 +51,15 @@ void OLEDmaininterf(void)
 	OLED_ShowString(0,30,"DRvalue:",8,1);		
 	OLED_ShowString(0,40,"addMem:",8,1);	
 	OLED_ShowString(0,50,"capt:",8,1);
+	OLED_Refresh();
 }
 
 
+//打印开机界面和主界面
 void  OLEDintset(void)
 {
 	OLEDloding(0,0,128,64,BMP1,1,500);
 	OLEDmaininterf();
-	OLED_Refresh();
 }
 
 

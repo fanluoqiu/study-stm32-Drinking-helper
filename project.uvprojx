@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\Library;.\User;.\HARDWARE\OLED;.\System\delay;.\System\sys;.\System\usart;.\HARDWARE;.\HARDWARE\Oled_print;.\User\adc;.\User\DMA;.\HARDWARE\buzzer</IncludePath>
+              <IncludePath>.\Start;.\Library;.\User;.\System\delay;.\System\sys;.\System\usart;.\HARDWARE;.\User\adc;.\User\DMA</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -568,61 +568,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Hardware</GroupName>
-          <Files>
-            <File>
-              <FileName>bmp.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HARDWARE\OLED\bmp.h</FilePath>
-            </File>
-            <File>
-              <FileName>oled.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HARDWARE\OLED\oled.c</FilePath>
-            </File>
-            <File>
-              <FileName>oled.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HARDWARE\OLED\oled.h</FilePath>
-            </File>
-            <File>
-              <FileName>oledfont.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HARDWARE\OLED\oledfont.h</FilePath>
-            </File>
-            <File>
-              <FileName>OledDriver.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HARDWARE\OLED\OledDriver.h</FilePath>
-            </File>
-            <File>
-              <FileName>oledprint.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HARDWARE\Oled_print\oledprint.h</FilePath>
-            </File>
-            <File>
-              <FileName>oledprint.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HARDWARE\Oled_print\oledprint.c</FilePath>
-            </File>
-            <File>
-              <FileName>bmp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HARDWARE\OLED\bmp.c</FilePath>
-            </File>
-            <File>
-              <FileName>buzzer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HARDWARE\buzzer\buzzer.c</FilePath>
-            </File>
-            <File>
-              <FileName>buzzer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HARDWARE\buzzer\buzzer.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>User</GroupName>
           <Files>
             <File>
@@ -664,6 +609,61 @@
               <FileName>DMAtest.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\User\DMA\DMAtest.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>HARDWARE</GroupName>
+          <Files>
+            <File>
+              <FileName>bmp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HARDWARE\bmp.c</FilePath>
+            </File>
+            <File>
+              <FileName>bmp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HARDWARE\bmp.h</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HARDWARE\buzzer.c</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HARDWARE\buzzer.h</FilePath>
+            </File>
+            <File>
+              <FileName>oled.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HARDWARE\oled.c</FilePath>
+            </File>
+            <File>
+              <FileName>oled.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HARDWARE\oled.h</FilePath>
+            </File>
+            <File>
+              <FileName>OledDriver.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HARDWARE\OledDriver.h</FilePath>
+            </File>
+            <File>
+              <FileName>oledfont.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HARDWARE\oledfont.h</FilePath>
+            </File>
+            <File>
+              <FileName>oledprint.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HARDWARE\oledprint.c</FilePath>
+            </File>
+            <File>
+              <FileName>oledprint.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HARDWARE\oledprint.h</FilePath>
             </File>
           </Files>
         </Group>

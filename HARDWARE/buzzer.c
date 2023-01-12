@@ -1,5 +1,5 @@
 #include "buzzer.h"
-
+#include "delay.h"
 
 uint16_t Period=0,Prescaler=0;
 
@@ -29,7 +29,7 @@ void Buzzer_conf(void)
     TIM_OCInitTypeDef TIM_OCInitStructure;
     TIM_OCInitStructure.TIM_OCMode=TIM_OCMode_PWM1;
     TIM_OCInitStructure.TIM_OutputState=TIM_OutputState_Enable;
-    TIM_OCInitStructure.TIM_Pulse=30;
+    TIM_OCInitStructure.TIM_Pulse=10;
     TIM_OCInitStructure.TIM_OCPolarity=TIM_OCPolarity_High;
     TIM_OC3Init(TIM2,&TIM_OCInitStructure);
 
@@ -45,4 +45,16 @@ void Buzzer_cmd(uint16_t TIM_Period,uint16_t TIM_Prescaler,FunctionalState  buzz
     TIM_TimeBaseInitStructure.TIM_Prescaler=Prescaler;  
     TIM_TimeBaseInit(TIM2,&TIM_TimeBaseInitStructure);
     TIM_Cmd(TIM2,buzzerstate);
+}
+
+
+void bootPOST(void)
+{
+    for(int i=0;i<3;i++)
+	{
+		Buzzer_cmd(200-1,180-1,ENABLE);
+		delay_ms(50);
+		TIM_Cmd(TIM2,DISABLE);
+		delay_ms(50);
+	}
 }
