@@ -17,11 +17,16 @@
 #include "Oledprint.h"
 #include "adctest.h"
 #include "buzzer.h"
+#include "delay.h"
+
 
 uint16_t  datacapt[PERIPHNUMB];
 
+
+
 int main(void)
 {
+	delay_init();
 	Buzzer_conf();
 
 
@@ -29,12 +34,13 @@ int main(void)
 //此处加上delay函数后，蜂鸣器无法关闭
 //TIM_cmd无法失能
 
-//	for(int i=0;i<3;i++)
-//	{
+	for(int i=0;i<3;i++)
+	{
 		Buzzer_cmd(200-1,180-1,ENABLE);
-		delay_ms(1000);
+		delay_ms(50);
 		TIM_Cmd(TIM2,DISABLE);
-//	}
+		delay_ms(50);
+	}
 	OLEDintset();	
 	init_adc();
 

@@ -29,7 +29,7 @@ void Buzzer_conf(void)
     TIM_OCInitTypeDef TIM_OCInitStructure;
     TIM_OCInitStructure.TIM_OCMode=TIM_OCMode_PWM1;
     TIM_OCInitStructure.TIM_OutputState=TIM_OutputState_Enable;
-    TIM_OCInitStructure.TIM_Pulse=4;
+    TIM_OCInitStructure.TIM_Pulse=30;
     TIM_OCInitStructure.TIM_OCPolarity=TIM_OCPolarity_High;
     TIM_OC3Init(TIM2,&TIM_OCInitStructure);
 
