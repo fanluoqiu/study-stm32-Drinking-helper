@@ -1,12 +1,7 @@
 #include "buzzer.h"
 #include "delay.h"
 #include "stm32f10x.h"
-
-//              低7  1   2   3   4   5   6   7  高1 高2 高3 高4 高5 不发音
-uc16 tone[] = {247,262,294,330,349,392,440,494,523,587,659,698,784,1000};//音频数据表
-
- u8 music[]={13,1,2,3,4,5,6,7,8};//音调 测试基础音
- u8 time[] ={4,4,4,4,4,4,4,4,4};//持续时长
+#include "musicdata.h"
 
 void Buzzer_conf(void)
 {
@@ -51,21 +46,18 @@ void Buzzer_cmd(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin,BUZZERSTATE state)
 
 void Buzzer_playmusic(void)
 {
-    // for(uint16_t tone_now=0;tone_now<sizeof(music)/sizeof(music[0]);tone_now++)
-    // {
-    //     for(uint16_t t=0;t<time[t]*1000000;t++)
-    //         Buzzer_playtone(200,3);
 
-    // }
 
     
 	for(uint16_t i=0;i<sizeof(music)/sizeof(music[0]);i++)
     {
 		for(uint16_t e=0;e<((u16)time[i])*tone[music[i]]/6;e++)
         {
-			Buzzer_playtone((u32)tone[music[i]],3);	
+			Buzzer_playtone((u32)tone[music[i]],2);	
         }
     }
+
+
 
 }
 

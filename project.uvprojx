@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\Library;.\User;.\System\delay;.\System\sys;.\System\usart;.\HARDWARE;.\User\adc;.\User\DMA</IncludePath>
+              <IncludePath>.\Start;.\Library;.\User;.\System\delay;.\System\sys;.\System\usart;.\HARDWARE;.\User\adc;.\User\DMA;.\User\Buzzer</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -609,6 +609,11 @@
               <FileName>DMAtest.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\User\DMA\DMAtest.h</FilePath>
+            </File>
+            <File>
+              <FileName>musicdata.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\Buzzer\musicdata.h</FilePath>
             </File>
           </Files>
         </Group>
