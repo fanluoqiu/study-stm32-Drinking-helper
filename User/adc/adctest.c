@@ -1,5 +1,7 @@
 #include "adctest.h"
 
+
+uint16_t  datacapt[PERIPHNUMB];
 //配置GPIO
 void GPIO_conf(void)
 {   

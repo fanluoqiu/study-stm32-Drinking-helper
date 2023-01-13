@@ -2,6 +2,8 @@
 #include "delay.h"
 #include "stm32f10x.h"
 #include "musicdata.h"
+#include "adctest.h"
+#include "oled.h"
 
 void Buzzer_conf(void)
 {
@@ -28,14 +30,14 @@ void Buzzer_playtone(const uint32_t frq,const uint16_t duty)
     else
     {
         time=10000/(uint32_t)frq;
-        Buzzer_cmd(GPIOA,GPIO_Pin_2,OPEN_BUZZER);
+        Buzzer_pwm(GPIOA,GPIO_Pin_2,OPEN_BUZZER);
         delay_us(time*duty);
-        Buzzer_cmd(GPIOA,GPIO_Pin_2,CLOSE_BUZZER);
+        Buzzer_pwm(GPIOA,GPIO_Pin_2,CLOSE_BUZZER);
         delay_us(time*(100-duty));
     }
 }
 
-void Buzzer_cmd(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin,BUZZERSTATE state)
+void Buzzer_pwm(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin,BUZZERSTATE state)
 {
     if(state==OPEN_BUZZER)
         GPIO_SetBits(GPIOx,GPIO_Pin);
@@ -44,21 +46,22 @@ void Buzzer_cmd(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin,BUZZERSTATE state)
 }
 
 
-void Buzzer_playmusic(void)
+uint8_t Buzzer_playmusic(void)
 {
-
-
-    
 	for(uint16_t i=0;i<sizeof(music)/sizeof(music[0]);i++)
     {
 		for(uint16_t e=0;e<((u16)time[i])*tone[music[i]]/6;e++)
         {
-			Buzzer_playtone((u32)tone[music[i]],2);	
+			Buzzer_playtone((u32)tone[music[i]],2);
+            if(datacapt[PERIPHNUMB-1]>1000)
+            {
+                GPIO_ResetBits(GPIOA,GPIO_Pin_2);
+                OLED_Clear();
+                return 1;
+            }
         }
     }
-
-
-
+    return 0;
 }
 
 
@@ -73,4 +76,5 @@ void bootPOST(void)
         }
         delay_ms(100);
     }
+    Buzzer_pwm(GPIOA,GPIO_Pin_2,CLOSE_BUZZER);
 }

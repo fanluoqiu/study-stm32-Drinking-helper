@@ -22,30 +22,39 @@
 
 
 
-uint16_t  datacapt[PERIPHNUMB];
 
 
 
 int main(void)
 {
 	delay_init();
-
-
 	Buzzer_conf();
 	OLEDintset();	
 	init_adc();
 	bootPOST();
 	delay_ms(2000);
-	Buzzer_playmusic();
+
 	while (1)
 	{
-		print_p(42,20,(uint32_t)&ADC1->DR);
-		OLED_ShowNum(48,30,ADC1->DR,5,8,1);
-		print_p(42,40,(uint32_t)&datacapt);
-		OLED_ShowNum(30,50,datacapt[0],5,8,1);
-		OLED_ShowNum(62,50,datacapt[1],5,8,1);
-		OLED_ShowNum(94,50,datacapt[2],5,8,1);
-		OLED_Refresh();
-		delay_ms(20);
+		if(datacapt[PERIPHNUMB-1]>1000)
+		{
+			OLEDmaininterf();
+			print_p(42,20,(uint32_t)&ADC1->DR);
+			OLED_ShowNum(48,30,ADC1->DR,5,8,1);
+			print_p(42,40,(uint32_t)&datacapt);
+			OLED_ShowNum(30,50,datacapt[0],5,8,1);
+			OLED_ShowNum(62,50,datacapt[1],5,8,1);
+			OLED_ShowNum(94,50,datacapt[2],5,8,1);
+			OLED_Refresh();
+			delay_ms(20);
+		}
+		else
+		{
+			OLED_Clear();
+			OLED_ShowString(0,30,"please drink water:)",8,0);
+			OLED_Refresh();
+			Buzzer_playmusic();
+
+		}
 	}
 }
