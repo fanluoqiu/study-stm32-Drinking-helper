@@ -78,3 +78,9 @@ void bootPOST(void)
     }
     Buzzer_pwm(GPIOA,GPIO_Pin_2,CLOSE_BUZZER);
 }
+
+
+void Buzzer_delayplay(uint8_t hour,uint8_t min)
+{
+    
+}

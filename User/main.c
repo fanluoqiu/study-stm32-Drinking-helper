@@ -31,6 +31,7 @@
 int main(void)
 {
 	delay_init();
+	
 	Buzzer_conf();
 	OLEDintset();	
 	init_adc();
