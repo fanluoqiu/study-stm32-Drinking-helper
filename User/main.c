@@ -12,7 +12,10 @@
 // 无源蜂鸣器模块：PIN_A2
 // ********sensor********
 
- 
+
+//********TIM********
+//	none
+//********TIM********
 #include "stm32f10x.h"
 #include "Oledprint.h"
 #include "adctest.h"
@@ -36,7 +39,7 @@ int main(void)
 
 	while (1)
 	{
-		if(datacapt[PERIPHNUMB-1]>1000)
+		if(datacapt[PERIPHNUMB-1]>1000)   //判断物体是否放置
 		{
 			OLEDmaininterf();
 			print_p(42,20,(uint32_t)&ADC1->DR);
@@ -54,7 +57,6 @@ int main(void)
 			OLED_ShowString(0,30,"please drink water:)",8,0);
 			OLED_Refresh();
 			Buzzer_playmusic();
-
 		}
 	}
 }

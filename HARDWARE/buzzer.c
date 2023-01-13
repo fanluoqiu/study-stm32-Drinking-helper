@@ -53,7 +53,7 @@ uint8_t Buzzer_playmusic(void)
 		for(uint16_t e=0;e<((u16)time[i])*tone[music[i]]/6;e++)
         {
 			Buzzer_playtone((u32)tone[music[i]],2);
-            if(datacapt[PERIPHNUMB-1]>1000)
+            if(datacapt[PERIPHNUMB-1]>1000)             //如果物体被拿开则停止播放
             {
                 GPIO_ResetBits(GPIOA,GPIO_Pin_2);
                 OLED_Clear();
