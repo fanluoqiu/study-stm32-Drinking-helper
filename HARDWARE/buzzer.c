@@ -10,7 +10,6 @@ void Buzzer_conf(void)
 
     //配置GPIO
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
-
     GPIO_InitTypeDef GPIO_InitStructure;
     GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Pin=GPIO_Pin_2;
@@ -19,6 +18,7 @@ void Buzzer_conf(void)
     GPIO_ResetBits(GPIOA,GPIO_Pin_2);
 
 }
+
 
 //frq:输入的频率
 //duty:占空比，在此处是音量的大小(0~50)
@@ -45,7 +45,6 @@ void Buzzer_pwm(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin,BUZZERSTATE state)
         GPIO_ResetBits(GPIOx,GPIO_Pin);
 }
 
-
 uint8_t Buzzer_playmusic(void)
 {
 	for(uint16_t i=0;i<sizeof(music)/sizeof(music[0]);i++)
@@ -63,7 +62,6 @@ uint8_t Buzzer_playmusic(void)
     }
     return 0;
 }
-
 
 void bootPOST(void)
 {

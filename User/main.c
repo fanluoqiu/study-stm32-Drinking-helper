@@ -1,43 +1,36 @@
-// ADC+DMA(连续扫描，循环模式)
-
-// ********oled********
-// SCL:PIN_B8
-// SDA:PNIN_B9
-// ********oled********
-
-// ********sensor********
-// 红外传感器1：PIN_A4
-// 红外传感器2：PIN_A5
-// 超声波模块：PIN_A6
-// 无源蜂鸣器模块：PIN_A2
-// ********sensor********
-
-
-//********TIM********
-//	none
-//********TIM********
+/***
+* ADC+DMA(连续扫描，循环模式)
+*
+* ********oled********
+* SCL:PIN_B8
+* SDA:PNIN_B9
+* ********oled********
+*
+* ********sensor********
+* 红外传感器1：PIN_A4
+* 红外传感器2：PIN_A5
+* 超声波模块：PIN_A6
+* 无源蜂鸣器模块：PIN_A2
+* ********sensor********
+*
+*
+*********TIM********
+*	none
+*********TIM********
+*/
 #include "stm32f10x.h"
 #include "Oledprint.h"
 #include "adctest.h"
 #include "buzzer.h"
 #include "delay.h"
-
-
-
-
-
-
-
 int main(void)
 {
 	delay_init();
-	
 	Buzzer_conf();
 	OLEDintset();	
 	init_adc();
 	bootPOST();
 	delay_ms(2000);
-
 	while (1)
 	{
 		if(datacapt[PERIPHNUMB-1]>1000)   //判断物体是否放置
