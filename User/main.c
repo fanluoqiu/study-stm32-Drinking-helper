@@ -37,16 +37,23 @@ int main(void)
 	delay_ms(2000);
 	while (1)
 	{
+		
 		if(datacapt[PERIPHNUMB-1]>800)   //判断物体是否放置
 		{
 			title="ADC&&DMA#TEST";
 		}
 		else if(datacapt[PERIPHNUMB-1]<400)
 		{
-			Buzzer_delayplaycmd(OPEN_BUZZER);//开始计时
-			OLED_Clearrow(2);
+			if(once==1)
+			{	
+				Buzzer_delayplaycmd(OPEN_BUZZER);
+				OLED_Clearrow(2);
+				title="En_TIM:";
+				once=!once;
+			}
+			Buzzer_getdelaytime();
 		}
-		else
+		else 
 			;
 		OLEDmaininterf(title);	
 	}

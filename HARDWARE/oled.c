@@ -4,6 +4,8 @@
 #include "delay.h"
 
 u8 OLED_GRAM[144][8];
+_Bool once=1;
+
 
 //反显函数
 void OLED_ColorTurn(u8 i)
@@ -161,18 +163,20 @@ void OLED_Clear(void)
 	OLED_Refresh();//更新显示
 }
 
+
 //清行函数
 void OLED_Clearrow(u8 row)
 {
 	u8 i,n;
-	for(i=0;i<row;i++)
-	{
-	   for(n=0;n<128;n++)
+
+		for(i=0;i<row;i++)
+		{
+			for(n=0;n<128;n++)
 			{
-			 OLED_GRAM[n][i]=0;//清除所有数据
+				OLED_GRAM[n][i]=0;//清除所有数据
 			}
-  }
-	OLED_Refresh();//更新显示
+		}
+
 }
 
 //画点 

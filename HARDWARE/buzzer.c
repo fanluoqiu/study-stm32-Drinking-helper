@@ -1,3 +1,4 @@
+
 #include "buzzer.h"
 #include "delay.h"
 #include "stm32f10x.h"
@@ -7,6 +8,7 @@
 
  
 uint32_t delaytime;
+
 void Buzzer_conf(void)
 {
 
@@ -119,6 +121,7 @@ void Buzzer_getdelaytime(void)
     else if(Buzzer_playmusic()==1)   //播放被中断
     {
         Buzzer_delayplaycmd(CLOSE_BUZZER);
+        once=1;
         OLED_Clear();				
     }
     else

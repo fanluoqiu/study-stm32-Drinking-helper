@@ -18,8 +18,8 @@
 
 #define OLED_CMD  0	
 #define OLED_DATA 1	
+extern _Bool once;
 
-void OLED_ClearPoint(u8 x,u8 y);
 void OLED_ColorTurn(u8 i);
 void OLED_DisplayTurn(u8 i);
 void I2C_Start(void);

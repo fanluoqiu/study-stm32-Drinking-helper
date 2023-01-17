@@ -10,7 +10,6 @@ typedef enum {OPEN_BUZZER=1,CLOSE_BUZZER=!OPEN_BUZZER} BUZZERSTATE;
 
 extern uint32_t delaytime;
 
-
 //basic
 void Buzzer_conf(void);
 

@@ -1,5 +1,5 @@
-#ifndef OLED_DRIVER_H
-#define OLED_DRIVER_H
+#ifndef OLEDPRINT_H
+#define OLEDPRINT_H
 
 #include "OledDriver.h"
 #include "sensor.h"

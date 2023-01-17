@@ -18,7 +18,6 @@ void OLEDloding(u8 x,u8 y,u8 sizex,u8 sizey,u8 BMP[],u8 mode,uint64_t delayms)
 	OLED_Init();
 	OLED_ColorTurn(0);
 	OLED_DisplayTurn(0);
-	
 
 	OLED_Clear();
 	OLED_ShowPicture(x,y,sizex,sizey,BMP,mode);  
