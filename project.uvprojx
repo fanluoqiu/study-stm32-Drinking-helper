@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\Library;.\User;.\System\delay;.\System\sys;.\System\usart;.\HARDWARE;.\User\adc;.\User\DMA;.\User\Buzzer</IncludePath>
+              <IncludePath>.\Start;.\Library;.\User;.\System\delay;.\System\sys;.\System\usart;.\HARDWARE;.\peripheral\adc;.\User\data;.\peripheral\DMA</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -568,68 +568,8 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>User</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32f10x_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\stm32f10x_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32f10x_it.h</FilePath>
-            </File>
-            <File>
-              <FileName>adctest.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\adc\adctest.c</FilePath>
-            </File>
-            <File>
-              <FileName>adctest.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\adc\adctest.h</FilePath>
-            </File>
-            <File>
-              <FileName>DMAtest.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\DMA\DMAtest.c</FilePath>
-            </File>
-            <File>
-              <FileName>DMAtest.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\DMA\DMAtest.h</FilePath>
-            </File>
-            <File>
-              <FileName>musicdata.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\Buzzer\musicdata.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>HARDWARE</GroupName>
           <Files>
-            <File>
-              <FileName>bmp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HARDWARE\bmp.c</FilePath>
-            </File>
-            <File>
-              <FileName>bmp.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HARDWARE\bmp.h</FilePath>
-            </File>
             <File>
               <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
@@ -669,6 +609,71 @@
               <FileName>oledprint.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\HARDWARE\oledprint.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>peripheral</GroupName>
+          <Files>
+            <File>
+              <FileName>adctest.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\peripheral\adc\adctest.c</FilePath>
+            </File>
+            <File>
+              <FileName>adctest.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\peripheral\adc\adctest.h</FilePath>
+            </File>
+            <File>
+              <FileName>DMAtest.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\peripheral\DMA\DMAtest.c</FilePath>
+            </File>
+            <File>
+              <FileName>DMAtest.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\peripheral\DMA\DMAtest.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>User</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\stm32f10x_conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\stm32f10x_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\stm32f10x_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>bmp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\data\bmp.c</FilePath>
+            </File>
+            <File>
+              <FileName>bmp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\data\bmp.h</FilePath>
+            </File>
+            <File>
+              <FileName>musicdata.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\data\musicdata.h</FilePath>
             </File>
           </Files>
         </Group>

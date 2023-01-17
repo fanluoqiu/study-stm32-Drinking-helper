@@ -19,7 +19,7 @@ void Buzzer_conf(void)
 
 }
 
-
+//此处通过推挽输出模式输出PWM波形
 //frq:输入的频率
 //duty:占空比，在此处是音量的大小(0~50)
 void Buzzer_playtone(const uint32_t frq,const uint16_t duty)
@@ -30,19 +30,11 @@ void Buzzer_playtone(const uint32_t frq,const uint16_t duty)
     else
     {
         time=10000/(uint32_t)frq;
-        Buzzer_pwm(GPIOA,GPIO_Pin_2,OPEN_BUZZER);
+        GPIO_SetBits(GPIOA,GPIO_Pin_2);
         delay_us(time*duty);
-        Buzzer_pwm(GPIOA,GPIO_Pin_2,CLOSE_BUZZER);
+        GPIO_ResetBits(GPIOA,GPIO_Pin_2);
         delay_us(time*(100-duty));
     }
-}
-
-void Buzzer_pwm(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin,BUZZERSTATE state)
-{
-    if(state==OPEN_BUZZER)
-        GPIO_SetBits(GPIOx,GPIO_Pin);
-    else
-        GPIO_ResetBits(GPIOx,GPIO_Pin);
 }
 
 uint8_t Buzzer_playmusic(void)
@@ -66,15 +58,15 @@ uint8_t Buzzer_playmusic(void)
 void bootPOST(void)
 {
 
-    for(int i=0;i<3;i++)
+    for(int i=0;i<2;i++)
     {
-        for(int i=1;i<50;i++)
+        for(int i=1;i<40;i++)
         {
-            Buzzer_playtone(850,3);
+            Buzzer_playtone(700,2);
         }
         delay_ms(100);
     }
-    Buzzer_pwm(GPIOA,GPIO_Pin_2,CLOSE_BUZZER);
+    GPIO_ResetBits(GPIOA,GPIO_Pin_2);
 }
 
 

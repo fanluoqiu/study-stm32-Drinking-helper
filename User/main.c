@@ -19,10 +19,11 @@
 *********TIM********
 */
 #include "stm32f10x.h"
+#include "delay.h"
 #include "Oledprint.h"
 #include "adctest.h"
 #include "buzzer.h"
-#include "delay.h"
+
 int main(void)
 {
 	delay_init();

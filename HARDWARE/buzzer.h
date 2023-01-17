@@ -9,7 +9,7 @@
 typedef enum {OPEN_BUZZER=1,CLOSE_BUZZER=!OPEN_BUZZER} BUZZERSTATE;
 //basic
 void Buzzer_conf(void);
-void Buzzer_pwm(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin,BUZZERSTATE state);
+
 void Buzzer_playtone(const uint32_t frq,const uint16_t duty);
 
 
