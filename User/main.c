@@ -24,8 +24,11 @@
 #include "Oledprint.h"
 #include "sensor.h"
 #include "buzzer.h"
+#include "main.h"
 
 u8 * title;
+
+tp_maininterfmode mode;
 int main(void)
 {
 	delay_init();
@@ -35,27 +38,38 @@ int main(void)
 	init_adc();
 	bootPOST();
 	delay_ms(2000);
+	_Bool once=1;
 	while (1)
 	{
 		
-		if(datacapt[PERIPHNUMB-1]>800)   //判断物体是否放置
+		switch (MainInterfMode())
 		{
-			title="ADC&&DMA#TEST";
-		}
-		else if(datacapt[PERIPHNUMB-1]<400)
-		{
-			if(once==1)
-			{	
-				Buzzer_delayplaycmd(OPEN_BUZZER);
-				OLED_Clearrow(2);
+			case normal:
+				title="ADC&&DMA#TEST";
+				once=1;
+				Buzzer_delayplaycmd(CLOSE_BUZZER);
+				break;
+			case Timekeeping:
+				if(once)
+				{
+					delaytime=3;
+					once=!once;
+				}
 				title="En_TIM:";
-				once=!once;
-			}
-			Buzzer_getdelaytime();
+				Buzzer_delayplaycmd(OPEN_BUZZER);    //开始计时
+				OLED_Clearrow(2);
+				OLED_ShowNum(60,0,delaytime,3,16,0);
+				break;
+			case Timeout:
+				OLED_Clear();
+				OLED_ShowString(0,30,"please drink water:)",8,0);
+				OLED_Refresh();
+				Buzzer_playmusic();
+				break;
+			default:
+				break;
 		}
-		else 
-			;
-		OLEDmaininterf(title);	
+		OLEDmaininterf(title);
 	}
 }
 
@@ -64,4 +78,14 @@ void TIM1_UP_IRQHandler(void)
 	if(TIM_GetITStatus(TIM1,TIM_IT_Update)==SET&&delaytime!=0)
 		delaytime--;
 	TIM_ClearITPendingBit(TIM1,TIM_IT_Update);
+}
+
+
+tp_maininterfmode MainInterfMode(void)
+{
+	tp_maininterfmode mode;
+	if(datacapt[PERIPHNUMB-1]>800)	mode=normal;
+	else if(datacapt[PERIPHNUMB-1]<400)	mode=Timekeeping;
+	if(delaytime==0)	mode=Timeout;
+	return mode;
 }

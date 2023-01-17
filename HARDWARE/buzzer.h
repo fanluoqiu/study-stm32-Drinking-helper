@@ -22,5 +22,4 @@ void bootPOST(void);
 uint8_t Buzzer_playmusic(void);
 void Buzzer_delayplayconf(uint8_t hour,uint8_t min);
 void Buzzer_delayplaycmd(BUZZERSTATE state);
-void Buzzer_getdelaytime(void);
 #endif

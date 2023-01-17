@@ -4,7 +4,6 @@
 #include "delay.h"
 
 u8 OLED_GRAM[144][8];
-_Bool once=1;
 
 
 //·´ÏÔº¯Êý

@@ -5,7 +5,7 @@
 #include "musicdata.h"
 #include "sensor.h"
 #include "oled.h"
-
+#include "main.h"
  
 uint32_t delaytime;
 
@@ -48,9 +48,12 @@ uint8_t Buzzer_playmusic(void)
 		for(uint16_t e=0;e<((u16)time[i])*tone[music[i]]/6;e++)
         {
 			Buzzer_pwm((u32)tone[music[i]],1);
-            if(datacapt[PERIPHNUMB-1]>900)             //如果物体被拿开则停止播放
+            if(datacapt[PERIPHNUMB-1]>800)             //如果物体被拿开则停止播放
             {
                 GPIO_ResetBits(GPIOA,GPIO_Pin_2);
+                mode=normal;
+                delaytime=3;
+                OLED_Clear();
                 return 1;
             }
         }
@@ -77,7 +80,7 @@ void Buzzer_delayplayconf(uint8_t hour,uint8_t min)
 {
     delaytime=hour*60+min;
     //使用TIM1定时
-    RCC_APB1PeriphClockCmd(RCC_APB2Periph_TIM1,ENABLE);
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1,ENABLE);
 
     //72Mhz/7200/50000=0.2,T=1/0.2=5s,5x12=1min
     TIM_InternalClockConfig(TIM1);
@@ -86,7 +89,7 @@ void Buzzer_delayplayconf(uint8_t hour,uint8_t min)
     TIM_TimeBaseInitStruct.TIM_CounterMode=TIM_CounterMode_Up;
     TIM_TimeBaseInitStruct.TIM_Period=50000-1;
     TIM_TimeBaseInitStruct.TIM_Prescaler=7200-1;          
-    TIM_TimeBaseInitStruct.TIM_RepetitionCounter=12;
+    TIM_TimeBaseInitStruct.TIM_RepetitionCounter=0;
     TIM_TimeBaseInit(TIM1,&TIM_TimeBaseInitStruct);
     TIM_ClearFlag(TIM1,TIM_IT_Update);
     TIM_ITConfig(TIM1,TIM_IT_Update,ENABLE);
@@ -107,23 +110,4 @@ void Buzzer_delayplaycmd(BUZZERSTATE state)
         TIM_Cmd(TIM1,ENABLE);
     else 
         TIM_Cmd(TIM1,DISABLE);
-}
-
-
-void Buzzer_getdelaytime(void)
-{
-    if(delaytime==0)
-    {
-        OLED_Clear();
-        OLED_ShowString(0,30,"please drink water:)",8,0);
-        OLED_Refresh();
-    }
-    else if(Buzzer_playmusic()==1)   //播放被中断
-    {
-        Buzzer_delayplaycmd(CLOSE_BUZZER);
-        once=1;
-        OLED_Clear();				
-    }
-    else
-        ;
 }
