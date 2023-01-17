@@ -25,9 +25,11 @@
 #include "sensor.h"
 #include "buzzer.h"
 
+u8 * title;
 int main(void)
 {
 	delay_init();
+	Buzzer_delayplayconf(0,3);
 	Buzzer_conf();
 	OLEDintset();	
 	init_adc();
@@ -35,26 +37,24 @@ int main(void)
 	delay_ms(2000);
 	while (1)
 	{
-		if(datacapt[PERIPHNUMB-1]>900)   //判断物体是否放置
+		if(datacapt[PERIPHNUMB-1]>800)   //判断物体是否放置
 		{
-			OLEDmaininterf();
-			print_p(42,20,(uint32_t)&ADC1->DR);
-			OLED_ShowNum(48,30,ADC1->DR,5,8,1);
-			print_p(42,40,(uint32_t)&datacapt);
-			OLED_ShowNum(30,50,datacapt[0],5,8,1);
-			OLED_ShowNum(62,50,datacapt[1],5,8,1);
-			OLED_ShowNum(94,50,datacapt[2],5,8,1);
-			OLED_Refresh();
-			delay_ms(20);
+			title="ADC&&DMA#TEST";
 		}
-		else if(datacapt[PERIPHNUMB-1]<500)
+		else if(datacapt[PERIPHNUMB-1]<400)
 		{
-			OLED_Clear();
-			OLED_ShowString(0,30,"please drink water:)",8,0);
-			OLED_Refresh();
-			Buzzer_playmusic();
+			Buzzer_delayplaycmd(OPEN_BUZZER);//开始计时
+			OLED_Clearrow(2);
 		}
 		else
-		;
+			;
+		OLEDmaininterf(title);	
 	}
+}
+
+void TIM1_UP_IRQHandler(void)
+{
+	if(TIM_GetITStatus(TIM1,TIM_IT_Update)==SET&&delaytime!=0)
+		delaytime--;
+	TIM_ClearITPendingBit(TIM1,TIM_IT_Update);
 }

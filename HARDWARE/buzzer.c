@@ -6,7 +6,7 @@
 #include "oled.h"
 
  
-
+uint32_t delaytime;
 void Buzzer_conf(void)
 {
 
@@ -49,7 +49,6 @@ uint8_t Buzzer_playmusic(void)
             if(datacapt[PERIPHNUMB-1]>900)             //如果物体被拿开则停止播放
             {
                 GPIO_ResetBits(GPIOA,GPIO_Pin_2);
-                OLED_Clear();
                 return 1;
             }
         }
@@ -72,7 +71,56 @@ void bootPOST(void)
 }
 
 
-void Buzzer_delayplay(uint8_t hour,uint8_t min)
+void Buzzer_delayplayconf(uint8_t hour,uint8_t min)
 {
-    
+    delaytime=hour*60+min;
+    //使用TIM1定时
+    RCC_APB1PeriphClockCmd(RCC_APB2Periph_TIM1,ENABLE);
+
+    //72Mhz/7200/50000=0.2,T=1/0.2=5s,5x12=1min
+    TIM_InternalClockConfig(TIM1);
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
+    TIM_TimeBaseInitStruct.TIM_ClockDivision=TIM_CKD_DIV1;
+    TIM_TimeBaseInitStruct.TIM_CounterMode=TIM_CounterMode_Up;
+    TIM_TimeBaseInitStruct.TIM_Period=50000-1;
+    TIM_TimeBaseInitStruct.TIM_Prescaler=7200-1;          
+    TIM_TimeBaseInitStruct.TIM_RepetitionCounter=12;
+    TIM_TimeBaseInit(TIM1,&TIM_TimeBaseInitStruct);
+    TIM_ClearFlag(TIM1,TIM_IT_Update);
+    TIM_ITConfig(TIM1,TIM_IT_Update,ENABLE);
+
+    NVIC_InitTypeDef NVIC_InitStruct;
+    NVIC_InitStruct.NVIC_IRQChannel=TIM1_UP_IRQn;
+    NVIC_InitStruct.NVIC_IRQChannelCmd=ENABLE;
+    NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority=0;
+    NVIC_InitStruct.NVIC_IRQChannelSubPriority=0;
+    NVIC_Init(&NVIC_InitStruct);
+
+    TIM_Cmd(TIM1,DISABLE);
+}
+
+void Buzzer_delayplaycmd(BUZZERSTATE state)
+{
+    if(state==OPEN_BUZZER)
+        TIM_Cmd(TIM1,ENABLE);
+    else 
+        TIM_Cmd(TIM1,DISABLE);
+}
+
+
+void Buzzer_getdelaytime(void)
+{
+    if(delaytime==0)
+    {
+        OLED_Clear();
+        OLED_ShowString(0,30,"please drink water:)",8,0);
+        OLED_Refresh();
+    }
+    else if(Buzzer_playmusic()==1)   //播放被中断
+    {
+        Buzzer_delayplaycmd(CLOSE_BUZZER);
+        OLED_Clear();				
+    }
+    else
+        ;
 }

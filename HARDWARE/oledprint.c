@@ -44,14 +44,22 @@ void print_p(u8 x,u8 y, uint32_t  addr)
 
 
 
-void OLEDmaininterf(void)
+void OLEDmaininterf(u8 * title)
 {
-	toptitle("ADC&&DMA#TEST",0);
-	OLED_ShowString(0,20,"addSrc:",8,1);	
+	toptitle(title,0);
+	OLED_ShowString(0,20,"adsdSrc:",8,1);	
 	OLED_ShowString(0,30,"DRvalue:",8,1);		
 	OLED_ShowString(0,40,"addMem:",8,1);	
 	OLED_ShowString(0,50,"capt:",8,1);
+
+	print_p(42,20,(uint32_t)&ADC1->DR);
+	OLED_ShowNum(48,30,ADC1->DR,5,8,1);
+	print_p(42,40,(uint32_t)&datacapt);
+	OLED_ShowNum(30,50,datacapt[0],5,8,1);
+	OLED_ShowNum(62,50,datacapt[1],5,8,1);
+	OLED_ShowNum(94,50,datacapt[2],5,8,1);
 	OLED_Refresh();
+//	delay_ms(20);
 }
 
 
@@ -59,7 +67,7 @@ void OLEDmaininterf(void)
 void  OLEDintset(void)
 {
 	OLEDloding(0,0,128,64,BMP1,1,500);
-	OLEDmaininterf();
+	OLEDmaininterf("ADC&&DMA#TEST");
 }
 
 

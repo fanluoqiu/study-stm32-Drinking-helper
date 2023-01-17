@@ -5,7 +5,7 @@
 #include "sys.h"
 #include "stdlib.h"	
 
-//-----------------OLED¶Ë¿Ú¶¨Òå---------------- 
+//-----------------OLEDå¼•è„šå®šä¹‰---------------- 
 
 #define OLED_SCL_Clr() GPIO_ResetBits(GPIOB,GPIO_Pin_8)//SCL
 #define OLED_SCL_Set() GPIO_SetBits(GPIOB,GPIO_Pin_8)
@@ -16,8 +16,8 @@
 
 
 
-#define OLED_CMD  0	//Ð´ÃüÁî
-#define OLED_DATA 1	//Ð´Êý¾Ý
+#define OLED_CMD  0	
+#define OLED_DATA 1	
 
 void OLED_ClearPoint(u8 x,u8 y);
 void OLED_ColorTurn(u8 i);
@@ -31,6 +31,8 @@ void OLED_DisPlay_On(void);
 void OLED_DisPlay_Off(void);
 void OLED_Refresh(void);
 void OLED_Clear(void);
+//æ¸…è¡Œå‡½æ•°
+void OLED_Clearrow(u8 row);    //by yqy 2023.1.17
 void OLED_DrawPoint(u8 x,u8 y,u8 t);
 void OLED_DrawLine(u8 x1,u8 y1,u8 x2,u8 y2,u8 mode);
 void OLED_DrawCircle(u8 x,u8 y,u8 r);
@@ -40,8 +42,8 @@ void OLED_ShowString(u8 x,u8 y,u8 *chr,u8 size1,u8 mode);
 void OLED_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 size1,u8 mode);
 
 
-///////////////²¹³ä
-void OLED_ShowHEXNum(u8 x,u8 y,u32 num,u8 len,u8 size1,u8 mode);//²¹³äÄÚÈÝby yqy(2022_12_31)
+//show HEX
+void OLED_ShowHEXNum(u8 x,u8 y,u32 num,u8 len,u8 size1,u8 mode);//by yqy(2022_12_31)
 
 
 void OLED_ShowChinese(u8 x,u8 y,u8 num,u8 size1,u8 mode);
