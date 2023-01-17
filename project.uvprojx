@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\Library;.\User;.\System\delay;.\System\sys;.\System\usart;.\HARDWARE;.\peripheral\adc;.\User\data;.\peripheral\DMA</IncludePath>
+              <IncludePath>.\Start;.\Library;.\User;.\System\delay;.\System\sys;.\System\usart;.\HARDWARE;.\User\data</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -610,30 +610,15 @@
               <FileType>5</FileType>
               <FilePath>.\HARDWARE\oledprint.h</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>peripheral</GroupName>
-          <Files>
             <File>
-              <FileName>adctest.c</FileName>
+              <FileName>sensor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\peripheral\adc\adctest.c</FilePath>
+              <FilePath>.\HARDWARE\sensor.c</FilePath>
             </File>
             <File>
-              <FileName>adctest.h</FileName>
+              <FileName>sensor.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\peripheral\adc\adctest.h</FilePath>
-            </File>
-            <File>
-              <FileName>DMAtest.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\peripheral\DMA\DMAtest.c</FilePath>
-            </File>
-            <File>
-              <FileName>DMAtest.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\peripheral\DMA\DMAtest.h</FilePath>
+              <FilePath>.\HARDWARE\sensor.h</FilePath>
             </File>
           </Files>
         </Group>

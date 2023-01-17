@@ -2,7 +2,7 @@
 #include "delay.h"
 #include "stm32f10x.h"
 #include "musicdata.h"
-#include "adctest.h"
+#include "sensor.h"
 #include "oled.h"
 
  

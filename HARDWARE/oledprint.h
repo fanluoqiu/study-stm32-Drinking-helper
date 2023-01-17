@@ -1,8 +1,8 @@
-#ifndef _OLEDPRINT_H
-#define _OLEDPRINT_H
+#ifndef OLED_DRIVER_H
+#define OLED_DRIVER_H
 
 #include "OledDriver.h"
-#include "adctest.h"
+#include "sensor.h"
 
 void OLEDintset(void);
 void OLEDloding(u8 x,u8 y,u8 sizex,u8 sizey,u8 BMP[],u8 mode,uint64_t delayms);

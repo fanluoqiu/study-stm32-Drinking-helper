@@ -20,8 +20,9 @@
 */
 #include "stm32f10x.h"
 #include "delay.h"
+
 #include "Oledprint.h"
-#include "adctest.h"
+#include "sensor.h"
 #include "buzzer.h"
 
 int main(void)
