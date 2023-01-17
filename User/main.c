@@ -34,7 +34,7 @@ int main(void)
 	delay_ms(2000);
 	while (1)
 	{
-		if(datacapt[PERIPHNUMB-1]>1000)   //判断物体是否放置
+		if(datacapt[PERIPHNUMB-1]>900)   //判断物体是否放置
 		{
 			OLEDmaininterf();
 			print_p(42,20,(uint32_t)&ADC1->DR);
@@ -46,12 +46,14 @@ int main(void)
 			OLED_Refresh();
 			delay_ms(20);
 		}
-		else
+		else if(datacapt[PERIPHNUMB-1]<500)
 		{
 			OLED_Clear();
 			OLED_ShowString(0,30,"please drink water:)",8,0);
 			OLED_Refresh();
 			Buzzer_playmusic();
 		}
+		else
+		;
 	}
 }

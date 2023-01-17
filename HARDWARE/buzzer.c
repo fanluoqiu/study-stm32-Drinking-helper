@@ -5,6 +5,8 @@
 #include "adctest.h"
 #include "oled.h"
 
+ 
+
 void Buzzer_conf(void)
 {
 
@@ -21,8 +23,8 @@ void Buzzer_conf(void)
 
 //此处通过推挽输出模式输出PWM波形
 //frq:输入的频率
-//duty:占空比，在此处是音量的大小(0~50)
-void Buzzer_playtone(const uint32_t frq,const uint16_t duty)
+//duty:占空比
+void Buzzer_pwm(const uint32_t frq,const uint16_t duty)
 {
     uint32_t time;
     if(frq==1000)
@@ -43,8 +45,8 @@ uint8_t Buzzer_playmusic(void)
     {
 		for(uint16_t e=0;e<((u16)time[i])*tone[music[i]]/6;e++)
         {
-			Buzzer_playtone((u32)tone[music[i]],2);
-            if(datacapt[PERIPHNUMB-1]>1000)             //如果物体被拿开则停止播放
+			Buzzer_pwm((u32)tone[music[i]],1);
+            if(datacapt[PERIPHNUMB-1]>900)             //如果物体被拿开则停止播放
             {
                 GPIO_ResetBits(GPIOA,GPIO_Pin_2);
                 OLED_Clear();
@@ -60,9 +62,9 @@ void bootPOST(void)
 
     for(int i=0;i<2;i++)
     {
-        for(int i=1;i<40;i++)
+        for(int i=1;i<35;i++)
         {
-            Buzzer_playtone(700,2);
+            Buzzer_pwm(700,2);
         }
         delay_ms(100);
     }
