@@ -58,7 +58,6 @@ void OLEDmaininterf(u8 * title)
 	OLED_ShowNum(62,50,datacapt[1],5,8,1);
 	OLED_ShowNum(94,50,datacapt[2],5,8,1);
 	OLED_Refresh();
-//	delay_ms(20);
 }
 
 
@@ -69,6 +68,14 @@ void  OLEDintset(void)
 	OLEDmaininterf("ADC&&DMA#TEST");
 }
 
+void OLED_Showtime(u8 x,u8 y,tp_time  time)
+{
 
+	OLED_ShowNum(x,y,time.hour,2,16,0);
+	OLED_ShowChar(x+16,y,':',16,0);
+	OLED_ShowNum(x+16+8,y,time.min,2,16,0);
+	OLED_ShowChar(x+16+8+16,y,':',16,0);
+	OLED_ShowNum(x+16+8+16+8,y,time.sec,2,16,0);
+}
 
 

@@ -7,7 +7,7 @@
 #include "oled.h"
 #include "main.h"
  
-uint32_t delaytime;
+uint64_t delaytime;
 
 void Buzzer_conf(void)
 {
@@ -52,7 +52,7 @@ uint8_t Buzzer_playmusic(void)
             {
                 GPIO_ResetBits(GPIOA,GPIO_Pin_2);
                 mode=normal;
-                delaytime=3;
+                resettime();
                 OLED_Clear();
                 return 1;
             }
@@ -76,18 +76,19 @@ void bootPOST(void)
 }
 
 
-void Buzzer_delayplayconf(uint8_t hour,uint8_t min)
+void Buzzer_delayplayconf(void)
 {
-    delaytime=hour*60+min;
+    resettime();
     //使用TIM1定时
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1,ENABLE);
 
     //72Mhz/7200/50000=0.2,T=1/0.2=5s,5x12=1min
+    //72Mhz/7200/10000=1,T=1s,
     TIM_InternalClockConfig(TIM1);
     TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
     TIM_TimeBaseInitStruct.TIM_ClockDivision=TIM_CKD_DIV1;
     TIM_TimeBaseInitStruct.TIM_CounterMode=TIM_CounterMode_Up;
-    TIM_TimeBaseInitStruct.TIM_Period=50000-1;
+    TIM_TimeBaseInitStruct.TIM_Period=10000-1;
     TIM_TimeBaseInitStruct.TIM_Prescaler=7200-1;          
     TIM_TimeBaseInitStruct.TIM_RepetitionCounter=0;
     TIM_TimeBaseInit(TIM1,&TIM_TimeBaseInitStruct);
