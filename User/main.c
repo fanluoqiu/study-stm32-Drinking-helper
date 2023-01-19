@@ -28,7 +28,7 @@
 
 u8 * title;
 tp_maininterfmode mode;
-tp_time init_delaytime={.hour=0,.min=3,.sec=10};
+tp_time init_delaytime={.hour=0,.min=0,.sec=10};
 int main(void)
 {
 	delay_init();
