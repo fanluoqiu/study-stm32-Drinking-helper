@@ -1,6 +1,10 @@
+---
+html:
+  embed_local_images: true
+---
 
-<font size=10>**基于stm32的喝水提醒小助手助手**</font>
 
+<font size=7>**基于stm32的喝水提醒小助手**</font>
 [TOC]
 
 
@@ -12,7 +16,7 @@
 场景模拟比较简单，当检测到物体时，启动定时器开始计时，并在屏幕上显示倒计时时间，倒计时结束时，蜂鸣器播放音乐，直到物体被拿开。
 
 <center>
-<img src="%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE.png">
+<img src="3.png">
 </center>
 
 ### 1.2 硬件准备
@@ -170,7 +174,7 @@ void Buzzer_pwm(const uint32_t frq,const uint16_t duty)
 有源蜂鸣器与无源蜂鸣器中的“源”是指“震荡源”。有源蜂鸣器内部带震荡源，所以只要一通电就会叫。而无源内部不带震荡源,如果用直流信号无法令其鸣叫,必须用方波去驱动它。对于无缘蜂鸣器，其声音频率可控，可以做出“多来米发索拉西”的效果。如果将引脚置高电平一段时间后再置低电平一段时间，循环函数 `Buzzer_pwm()`，就可以得到特定频率的方波。
 
 <center>
-<img src="STM32%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B.png" />
+<img src="1.png" />
 </center>
 
 ```c
@@ -385,7 +389,9 @@ void init_dma(__IO uint32_t * PeripheralBaseAddr,uint16_t * MemoryBaseAddr,uint1
     DMA_Cmd(DMA1_Channel1,ENABLE);
 }
 ````
+## 2 代码文件
 
+[:arrow_down: GitHub](https://github.com/fanluoqiu/study-stm32.git)
 
 ## 2 参考文章
 [《基于STM32F103，用蜂鸣器播放歌曲》 作者：lintax 发布时间： 2022-07-31 18:08:19](http://t.csdn.cn/GpgSE)
