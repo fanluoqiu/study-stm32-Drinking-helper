@@ -391,7 +391,7 @@ void init_dma(__IO uint32_t * PeripheralBaseAddr,uint16_t * MemoryBaseAddr,uint1
 ````
 ## 2 代码文件
 
-[:arrow_down: GitHub](https://github.com/fanluoqiu/study-stm32.git)
+[:arrow_down: GitHub](https://github.com/fanluoqiu/study-stm32-Drinking-helper.git)
 
 ## 2 参考文章
 [《基于STM32F103，用蜂鸣器播放歌曲》 作者：lintax 发布时间： 2022-07-31 18:08:19](http://t.csdn.cn/GpgSE)
